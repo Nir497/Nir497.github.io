@@ -71,7 +71,7 @@
     "description": "API Monitor helps development teams inspect API uptime and response behavior from a local desktop dashboard.",
     "tags": ["Development", "Monitoring", "Desktop"],
     "year": 2025,
-    "featured": true,
+    "featured": false,
     "images": [
       {
         "src": "assets/images/data-1.svg",
@@ -164,7 +164,7 @@
           {
             "os": "Cross-platform",
             "label": "Initial ZIP Upload",
-            "file": "'/Users/nirchuk/Downloads/mysite/assets/downloads/smart_searchplus.zip'",
+            "file": "assets/downloads/smart_searchplus.zip",
             "type": "ZIP"
           }
         ]
