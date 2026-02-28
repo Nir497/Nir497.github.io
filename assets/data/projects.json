@@ -144,7 +144,7 @@
   {
     "id": "smart-search-plus",
     "title": "Smart Search+",
-    "summary": "Placeholder project created from your uploaded smart_search+ copy.zip.",
+    "summary": "Placeholder project entry with a clean GitHub Pages download path.",
     "description": "Replace this text with your project details, features, and technical notes.",
     "tags": ["Development", "Search", "Pending Details"],
     "year": 2026,
@@ -164,7 +164,7 @@
           {
             "os": "Cross-platform",
             "label": "Initial ZIP Upload",
-            "file": "assets/downloads/smart_searchplus.zip",
+            "file": "assets/downloads/smart-search-plus-0.1.0.zip",
             "type": "ZIP"
           }
         ]
