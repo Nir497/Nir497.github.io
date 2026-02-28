@@ -167,12 +167,7 @@
     "tags": ["Development", "Search", "Pending Details"],
     "year": 2026,
     "featured": true,
-    "nextSteps": [
-      "Extract the Smart Search+ package.",
-      "Open the included documentation and run setup steps.",
-      "Configure environment variables and API keys if required.",
-      "Start the app and validate search results on sample data."
-    ],
+    "nextStepsMarkdown": "### Setup\\n- Unzip the Smart Search+ package.\\n- Open a terminal in the project directory.\\n- Configure required environment variables and API keys.\\n\\n### Run\\n- Start the app using your documented command (for example `npm start`).\\n- Validate search behavior using sample queries.\\n\\n### Verify\\n- Confirm the expected results are returned.\\n- Save your config for future runs.",
     "images": [
       {
         "src": "assets/images/design-1.svg",

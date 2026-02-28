@@ -331,6 +331,34 @@ body {
   margin: 0.35rem 0;
 }
 
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  margin: 0.6rem 0 0.4rem;
+}
+
+.markdown-content p {
+  margin: 0.45rem 0;
+}
+
+.markdown-content ul {
+  margin: 0.4rem 0;
+  padding-left: 1.2rem;
+}
+
+.markdown-content li {
+  margin: 0.25rem 0;
+}
+
+.markdown-content code {
+  background: #eef3ea;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0.1rem 0.35rem;
+  font-family: "Menlo", "Consolas", monospace;
+  font-size: 0.85em;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

@@ -64,6 +64,75 @@ function defaultSteps(projectTitle, os, version) {
   ];
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll("\"", "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function renderInlineMarkdown(text) {
+  let html = escapeHtml(text);
+  html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
+  html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+  html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  return html;
+}
+
+function renderMarkdown(markdown) {
+  const lines = String(markdown).split("\n");
+  const html = [];
+  let inList = false;
+
+  function closeList() {
+    if (inList) {
+      html.push("</ul>");
+      inList = false;
+    }
+  }
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    if (!trimmed) {
+      closeList();
+      return;
+    }
+
+    if (trimmed.startsWith("### ")) {
+      closeList();
+      html.push(`<h3>${renderInlineMarkdown(trimmed.slice(4))}</h3>`);
+      return;
+    }
+    if (trimmed.startsWith("## ")) {
+      closeList();
+      html.push(`<h2>${renderInlineMarkdown(trimmed.slice(3))}</h2>`);
+      return;
+    }
+    if (trimmed.startsWith("# ")) {
+      closeList();
+      html.push(`<h1>${renderInlineMarkdown(trimmed.slice(2))}</h1>`);
+      return;
+    }
+    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
+      if (!inList) {
+        html.push("<ul>");
+        inList = true;
+      }
+      html.push(`<li>${renderInlineMarkdown(trimmed.slice(2))}</li>`);
+      return;
+    }
+
+    closeList();
+    html.push(`<p>${renderInlineMarkdown(trimmed)}</p>`);
+  });
+
+  closeList();
+  return html.join("");
+}
+
 function render(project, build, selectedVersion, selectedOs) {
   const clone = template.content.cloneNode(true);
 
@@ -71,15 +140,23 @@ function render(project, build, selectedVersion, selectedOs) {
   subtitle.textContent = `${project.title} | Version ${selectedVersion || "latest"} | ${selectedOs || "OS"}`;
 
   const stepsList = clone.querySelector("#next-steps-list");
+  const markdownContainer = clone.querySelector("#next-steps-markdown");
   const steps = project.nextSteps && project.nextSteps.length
     ? project.nextSteps
     : defaultSteps(project.title, selectedOs, selectedVersion);
+  const markdownText = (project.nextStepsMarkdown || "").trim();
 
-  steps.forEach((step) => {
-    const item = document.createElement("li");
-    item.textContent = step;
-    stepsList.append(item);
-  });
+  if (markdownText) {
+    stepsList.style.display = "none";
+    markdownContainer.innerHTML = renderMarkdown(markdownText);
+  } else {
+    markdownContainer.style.display = "none";
+    steps.forEach((step) => {
+      const item = document.createElement("li");
+      item.innerHTML = renderInlineMarkdown(step);
+      stepsList.append(item);
+    });
+  }
 
   const backToProject = clone.querySelector("#back-to-project");
   backToProject.href = `project.html?id=${encodeURIComponent(project.id)}`;

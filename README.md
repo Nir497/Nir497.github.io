@@ -29,6 +29,7 @@ Static personal website with:
    - `tags` (used in dropdown filter)
    - `images` array with `src`, `alt`, `caption`
    - optional `nextSteps` array of instruction strings shown after download
+   - optional `nextStepsMarkdown` string for Markdown-formatted instructions (takes priority over `nextSteps`)
    - `releases` array with:
      - `version`, `date`
      - `builds` array with `os`, `label`, `file`, `type`
@@ -38,6 +39,9 @@ Use relative paths, for example:
 - `assets/downloads/my-project-2.1.0-windows-x64.zip`
 - `assets/downloads/my-project-2.1.0-macos-universal.zip`
 - `assets/downloads/my-project-2.1.0-linux-x64.tar.gz`
+
+Example Markdown field:
+- `"nextStepsMarkdown": "### Setup\n- Extract files\n- Run \`npm install\`"`
 
 ## Deploy to GitHub Pages
 
