@@ -355,6 +355,7 @@ body {
   margin: 0.25rem 0;
 }
 
+.steps-list code,
 .markdown-content code {
   background: #eef3ea;
   border: 1px solid var(--line);
@@ -362,6 +363,21 @@ body {
   padding: 0.1rem 0.35rem;
   font-family: "Menlo", "Consolas", monospace;
   font-size: 0.85em;
+}
+
+.steps-list a,
+.markdown-content a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.steps-list a:hover,
+.steps-list a:focus,
+.markdown-content a:hover,
+.markdown-content a:focus {
+  color: var(--accent-strong);
+  text-decoration: underline;
 }
 
 .visually-hidden {

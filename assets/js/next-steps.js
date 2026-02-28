@@ -156,14 +156,18 @@ function render(project, build, selectedVersion, selectedOs) {
 
   const stepsList = clone.querySelector("#next-steps-list");
   const markdownContainer = clone.querySelector("#next-steps-markdown");
-  const steps = project.nextSteps && project.nextSteps.length
-    ? project.nextSteps
-    : defaultSteps(project.title, selectedOs, selectedVersion);
-  const markdownText = (project.nextStepsMarkdown || "").trim();
+  const fallbackSteps = defaultSteps(project.title, selectedOs, selectedVersion);
+  const nextStepsValue = project.nextSteps;
+  const steps = Array.isArray(nextStepsValue) && nextStepsValue.length ? nextStepsValue : fallbackSteps;
+  const markdownText = typeof project.nextStepsMarkdown === "string" ? project.nextStepsMarkdown.trim() : "";
+  const markdownFromTextBox = typeof nextStepsValue === "string" ? nextStepsValue.trim() : "";
 
   if (markdownText) {
     stepsList.style.display = "none";
     markdownContainer.innerHTML = renderMarkdown(markdownText);
+  } else if (markdownFromTextBox) {
+    stepsList.style.display = "none";
+    markdownContainer.innerHTML = renderMarkdown(markdownFromTextBox);
   } else {
     markdownContainer.style.display = "none";
     steps.forEach((step) => {
