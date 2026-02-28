@@ -4,15 +4,18 @@ Static personal website with:
 - Top dropdown nav + search
 - Development project list page (text + images, no direct download links)
 - Project details page with version + OS dropdown download
+- Post-download next-steps page for setup instructions
 - Data-driven rendering from `assets/data/projects.json`
 
 ## Project Structure
 
 - `index.html`
 - `project.html` (project details, loaded with `?id=<project-id>`)
+- `next-steps.html` (post-download setup page)
 - `assets/css/styles.css`
 - `assets/js/app.js`
 - `assets/js/project.js`
+- `assets/js/next-steps.js`
 - `assets/data/projects.json`
 - `assets/images/`
 - `assets/downloads/`
@@ -25,6 +28,7 @@ Static personal website with:
    - `title`, `summary`, `description`
    - `tags` (used in dropdown filter)
    - `images` array with `src`, `alt`, `caption`
+   - optional `nextSteps` array of instruction strings shown after download
    - `releases` array with:
      - `version`, `date`
      - `builds` array with `os`, `label`, `file`, `type`

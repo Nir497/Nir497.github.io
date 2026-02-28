@@ -7,6 +7,12 @@
     "tags": ["Development", "CLI", "Node.js"],
     "year": 2026,
     "featured": true,
+    "nextSteps": [
+      "Extract the CLI package to a local tools folder.",
+      "Add the executable path to your system PATH.",
+      "Run devtool --help to verify installation.",
+      "Configure your default scaffold template before first use."
+    ],
     "images": [
       {
         "src": "assets/images/notes-1.svg",
@@ -72,6 +78,12 @@
     "tags": ["Development", "Monitoring", "Desktop"],
     "year": 2025,
     "featured": false,
+    "nextSteps": [
+      "Install and launch API Monitor.",
+      "Add your first API endpoint group and health check interval.",
+      "Configure alert thresholds for latency and uptime.",
+      "Save your workspace and run an initial monitoring pass."
+    ],
     "images": [
       {
         "src": "assets/images/data-1.svg",
@@ -119,6 +131,12 @@
     "tags": ["Development", "Frontend", "Design System"],
     "year": 2026,
     "featured": false,
+    "nextSteps": [
+      "Unzip the source package into your frontend workspace.",
+      "Install dependencies listed in the package README.",
+      "Import the component styles and token files.",
+      "Run the local preview and verify core components render."
+    ],
     "images": [
       {
         "src": "assets/images/design-1.svg",
@@ -149,6 +167,12 @@
     "tags": ["Development", "Search", "Pending Details"],
     "year": 2026,
     "featured": true,
+    "nextSteps": [
+      "Extract the Smart Search+ package.",
+      "Open the included documentation and run setup steps.",
+      "Configure environment variables and API keys if required.",
+      "Start the app and validate search results on sample data."
+    ],
     "images": [
       {
         "src": "assets/images/design-1.svg",

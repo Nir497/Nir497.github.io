@@ -146,6 +146,8 @@ function renderProject(project) {
   const osSelect = detailNode.querySelector("#os-select");
   const downloadButton = detailNode.querySelector("#download-button");
   const downloadMeta = detailNode.querySelector("#download-meta");
+  let currentRelease = null;
+  let currentBuild = null;
 
   releases.forEach((release, index) => {
     const option = document.createElement("option");
@@ -175,6 +177,8 @@ function renderProject(project) {
   function refreshDownloadButton() {
     const selectedRelease = releases[Number(versionSelect.value)] || releases[0];
     const build = (selectedRelease.builds || [])[Number(osSelect.value)] || null;
+    currentRelease = selectedRelease;
+    currentBuild = build;
 
     if (!build) {
       downloadButton.href = "#";
@@ -187,6 +191,32 @@ function renderProject(project) {
     downloadButton.removeAttribute("aria-disabled");
     downloadMeta.textContent = `${build.label || "Build"} | ${build.type || "File"} | ${selectedRelease.date || "Date N/A"}`;
   }
+
+  downloadButton.addEventListener("click", (event) => {
+    if (downloadButton.getAttribute("aria-disabled") === "true" || !currentBuild || !currentRelease) {
+      event.preventDefault();
+      return;
+    }
+
+    event.preventDefault();
+
+    // Trigger the selected file download, then route to next steps guidance.
+    const downloader = document.createElement("a");
+    downloader.href = currentBuild.file;
+    downloader.setAttribute("download", "");
+    document.body.append(downloader);
+    downloader.click();
+    downloader.remove();
+
+    const params = new URLSearchParams({
+      id: project.id,
+      version: currentRelease.version || "",
+      os: currentBuild.os || "",
+    });
+    window.setTimeout(() => {
+      window.location.href = `next-steps.html?${params.toString()}`;
+    }, 250);
+  });
 
   versionSelect.addEventListener("change", refreshOsOptions);
   osSelect.addEventListener("change", refreshDownloadButton);

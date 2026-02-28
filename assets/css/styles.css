@@ -322,6 +322,15 @@ body {
   color: var(--muted);
 }
 
+.steps-list {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.steps-list li {
+  margin: 0.35rem 0;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

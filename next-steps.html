@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Next Steps | Nir Portfolio</title>
+    <meta name="description" content="Post-download setup and usage instructions." />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html">Nir Portfolio</a>
+      </div>
+    </header>
+
+    <main class="content">
+      <section id="next-steps-root" aria-live="polite" aria-atomic="true"></section>
+    </main>
+
+    <template id="next-steps-template">
+      <article class="project-detail">
+        <div class="detail-top">
+          <a class="back-link" href="index.html">&larr; Back to Projects</a>
+          <a id="back-to-project" class="back-link" href="#">Back to Project</a>
+        </div>
+        <h1>Next Steps</h1>
+        <p id="next-steps-subtitle" class="project-summary"></p>
+        <section class="download-panel">
+          <h2>What to do next</h2>
+          <ol id="next-steps-list" class="steps-list"></ol>
+          <div class="download-actions">
+            <a id="redownload-button" class="download-btn" href="#" download>Download Again</a>
+          </div>
+        </section>
+      </article>
+    </template>
+
+    <script src="assets/js/next-steps.js" defer></script>
+  </body>
+</html>
