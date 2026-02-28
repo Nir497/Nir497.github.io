@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#edf4f8"/>
+  <rect x="56" y="46" width="688" height="408" rx="20" fill="#ffffff" stroke="#cfdce4"/>
+  <rect x="96" y="96" width="608" height="318" rx="14" fill="#f4f9fc" stroke="#d8e5ed"/>
+  <path d="M150,330 L250,270 L330,300 L420,220 L530,250 L620,180" fill="none" stroke="#2f6f4f" stroke-width="6"/>
+  <circle cx="250" cy="270" r="8" fill="#2f6f4f"/>
+  <circle cx="420" cy="220" r="8" fill="#2f6f4f"/>
+  <circle cx="620" cy="180" r="8" fill="#2f6f4f"/>
+  <text x="96" y="82" font-family="Arial, sans-serif" font-size="22" fill="#2c4f63">Map Layer Snapshot</text>
+</svg>

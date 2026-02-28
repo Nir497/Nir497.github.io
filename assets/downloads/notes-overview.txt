@@ -1,0 +1,11 @@
+Offline Notes App - Overview
+
+This document describes core features:
+- Create/edit/delete notes
+- Organize with tags
+- Quick keyboard actions
+
+Tech stack:
+- Vanilla JavaScript
+- Local storage
+- Responsive UI

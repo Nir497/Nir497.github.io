@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#eef3fb"/>
+  <rect x="50" y="48" width="700" height="404" rx="20" fill="#ffffff" stroke="#ccd7eb"/>
+  <polyline points="110,330 210,280 310,300 410,210 510,240 610,170 700,200" fill="none" stroke="#2f6f4f" stroke-width="6" stroke-linecap="round"/>
+  <polyline points="110,360 210,345 310,290 410,305 510,260 610,280 700,220" fill="none" stroke="#497bb8" stroke-width="6" stroke-linecap="round"/>
+  <line x1="100" y1="120" x2="100" y2="390" stroke="#d3ddee" stroke-width="4"/>
+  <line x1="100" y1="390" x2="710" y2="390" stroke="#d3ddee" stroke-width="4"/>
+  <text x="100" y="96" font-family="Arial, sans-serif" font-size="22" fill="#2a456a">City Data Trends</text>
+</svg>

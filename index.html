@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nir Portfolio</title>
+    <meta name="description" content="Personal projects portfolio with downloadable files and galleries." />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top">Nir Portfolio</a>
+        <nav class="top-nav" aria-label="Primary">
+          <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+          <div id="nav-menu" class="nav-menu">
+            <label for="section-filter" class="visually-hidden">Filter by section</label>
+            <select id="section-filter" class="section-select" aria-label="Filter projects by section">
+              <option value="all">All Projects</option>
+            </select>
+            <label for="project-search" class="visually-hidden">Search projects</label>
+            <input
+              id="project-search"
+              class="search-input"
+              type="search"
+              placeholder="Search projects..."
+              autocomplete="off"
+            />
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="content">
+      <section class="hero">
+        <h1>My Development Projects</h1>
+        <p>Browse builds, release versions, and OS-specific downloads for each project.</p>
+      </section>
+
+      <section aria-live="polite" aria-atomic="true">
+        <p id="results-count" class="results-count">Loading projects...</p>
+      </section>
+
+      <section id="projects-container" class="projects-grid" aria-label="Project list"></section>
+    </main>
+
+    <template id="project-template">
+      <article class="project-card">
+        <div class="project-head">
+          <h2 class="project-title"></h2>
+          <p class="project-summary"></p>
+          <ul class="project-tags"></ul>
+        </div>
+        <p class="project-description"></p>
+        <div class="project-gallery"></div>
+        <div class="project-downloads">
+          <h3>Releases</h3>
+          <div class="release-list"></div>
+        </div>
+      </article>
+    </template>
+
+    <script src="assets/js/app.js" defer></script>
+  </body>
+</html>

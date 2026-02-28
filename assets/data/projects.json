@@ -1,0 +1,174 @@
+[
+  {
+    "id": "devtool-cli",
+    "title": "DevTool CLI",
+    "summary": "A command-line utility for bootstrapping and validating development workflows.",
+    "description": "DevTool CLI automates project scaffolding, lint setup, and environment checks for new repositories.",
+    "tags": ["Development", "CLI", "Node.js"],
+    "year": 2026,
+    "featured": true,
+    "images": [
+      {
+        "src": "assets/images/notes-1.svg",
+        "alt": "DevTool command examples",
+        "caption": "Bootstrap and validation commands"
+      },
+      {
+        "src": "assets/images/notes-2.svg",
+        "alt": "Terminal output",
+        "caption": "CI checks and diagnostics output"
+      }
+    ],
+    "releases": [
+      {
+        "version": "2.1.0",
+        "date": "2026-02-20",
+        "builds": [
+          {
+            "os": "Windows",
+            "label": "Windows x64",
+            "file": "assets/downloads/devtool-cli-2.1.0-windows-x64.zip",
+            "type": "ZIP"
+          },
+          {
+            "os": "macOS",
+            "label": "macOS Universal",
+            "file": "assets/downloads/devtool-cli-2.1.0-macos-universal.zip",
+            "type": "ZIP"
+          },
+          {
+            "os": "Linux",
+            "label": "Linux x64",
+            "file": "assets/downloads/devtool-cli-2.1.0-linux-x64.tar.gz",
+            "type": "TAR.GZ"
+          }
+        ]
+      },
+      {
+        "version": "2.0.4",
+        "date": "2025-12-10",
+        "builds": [
+          {
+            "os": "Windows",
+            "label": "Windows x64",
+            "file": "assets/downloads/devtool-cli-2.0.4-windows-x64.zip",
+            "type": "ZIP"
+          },
+          {
+            "os": "macOS",
+            "label": "macOS Universal",
+            "file": "assets/downloads/devtool-cli-2.0.4-macos-universal.zip",
+            "type": "ZIP"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "api-monitor",
+    "title": "API Monitor",
+    "summary": "Desktop app for health checks, endpoint latency tracking, and alert summaries.",
+    "description": "API Monitor helps development teams inspect API uptime and response behavior from a local desktop dashboard.",
+    "tags": ["Development", "Monitoring", "Desktop"],
+    "year": 2025,
+    "featured": true,
+    "images": [
+      {
+        "src": "assets/images/data-1.svg",
+        "alt": "API Monitor overview",
+        "caption": "Service status and latency timeline"
+      },
+      {
+        "src": "assets/images/data-2.svg",
+        "alt": "Endpoint map",
+        "caption": "Grouped endpoint map and alerts"
+      }
+    ],
+    "releases": [
+      {
+        "version": "1.8.3",
+        "date": "2026-01-14",
+        "builds": [
+          {
+            "os": "Windows",
+            "label": "Installer",
+            "file": "assets/downloads/api-monitor-1.8.3-windows-installer.exe",
+            "type": "EXE"
+          },
+          {
+            "os": "macOS",
+            "label": "Disk Image",
+            "file": "assets/downloads/api-monitor-1.8.3-macos.dmg",
+            "type": "DMG"
+          },
+          {
+            "os": "Linux",
+            "label": "AppImage",
+            "file": "assets/downloads/api-monitor-1.8.3-linux.AppImage",
+            "type": "APPIMAGE"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ui-component-kit",
+    "title": "UI Component Kit",
+    "summary": "Shared component package for internal web applications.",
+    "description": "A versioned UI kit with accessible primitives, tokens, and docs used across multiple development teams.",
+    "tags": ["Development", "Frontend", "Design System"],
+    "year": 2026,
+    "featured": false,
+    "images": [
+      {
+        "src": "assets/images/design-1.svg",
+        "alt": "UI components gallery",
+        "caption": "Component library and design tokens"
+      }
+    ],
+    "releases": [
+      {
+        "version": "3.4.0",
+        "date": "2026-02-05",
+        "builds": [
+          {
+            "os": "Cross-platform",
+            "label": "Source Package",
+            "file": "assets/downloads/ui-kit-3.4.0-source.zip",
+            "type": "ZIP"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "smart-search-plus",
+    "title": "Smart Search+",
+    "summary": "Placeholder project created from your uploaded smart_search+ copy.zip.",
+    "description": "Replace this text with your project details, features, and technical notes.",
+    "tags": ["Development", "Search", "Pending Details"],
+    "year": 2026,
+    "featured": true,
+    "images": [
+      {
+        "src": "assets/images/design-1.svg",
+        "alt": "Placeholder image for Smart Search project",
+        "caption": "Replace with real screenshots"
+      }
+    ],
+    "releases": [
+      {
+        "version": "0.1.0",
+        "date": "2026-02-28",
+        "builds": [
+          {
+            "os": "Cross-platform",
+            "label": "Initial ZIP Upload",
+            "file": "'/Users/nirchuk/Downloads/mysite/assets/downloads/smart_search+ copy.zip'",
+            "type": "ZIP"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+Starter Design System - Component Guide
+
+Included primitives:
+- Buttons (primary, secondary)
+- Inputs and select fields
+- Cards and tag pills
+- Typography scale and spacing tokens
+
+Accessibility baseline:
+- Visible focus states
+- Semantic HTML
+- Color contrast checks

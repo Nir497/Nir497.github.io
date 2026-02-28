@@ -1,0 +1,6 @@
+Offline Notes App - Release Notes
+
+Version 1.0.0
+- Initial release with local persistence
+- Added search and tag filtering
+- Added keyboard shortcuts for quick capture
