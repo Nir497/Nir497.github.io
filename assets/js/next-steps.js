@@ -84,68 +84,98 @@ function renderInlineMarkdown(text) {
 
 function renderMarkdown(markdown) {
   const lines = String(markdown).split("\n");
-  const html = [];
-  let listMode = null;
+  const container = document.createElement("div");
+  let orderedList = null;
+  let unorderedList = null;
+  let nestedUnorderedList = null;
+  let lastOrderedItem = null;
 
-  function closeList() {
-    if (listMode === "ul") {
-      html.push("</ul>");
-      listMode = null;
-    }
-    if (listMode === "ol") {
-      html.push("</ol>");
-      listMode = null;
-    }
+  function resetListPointers() {
+    orderedList = null;
+    unorderedList = null;
+    nestedUnorderedList = null;
+    lastOrderedItem = null;
   }
 
   lines.forEach((line) => {
-    const trimmed = line.trim();
+    const raw = String(line).replace(/\t/g, "    ");
+    const trimmed = raw.trim();
+    const indent = raw.match(/^ */)?.[0].length || 0;
+
     if (!trimmed) {
-      closeList();
+      resetListPointers();
       return;
     }
 
     if (trimmed.startsWith("### ")) {
-      closeList();
-      html.push(`<h3>${renderInlineMarkdown(trimmed.slice(4))}</h3>`);
+      resetListPointers();
+      const el = document.createElement("h3");
+      el.innerHTML = renderInlineMarkdown(trimmed.slice(4));
+      container.append(el);
       return;
     }
     if (trimmed.startsWith("## ")) {
-      closeList();
-      html.push(`<h2>${renderInlineMarkdown(trimmed.slice(3))}</h2>`);
+      resetListPointers();
+      const el = document.createElement("h2");
+      el.innerHTML = renderInlineMarkdown(trimmed.slice(3));
+      container.append(el);
       return;
     }
     if (trimmed.startsWith("# ")) {
-      closeList();
-      html.push(`<h1>${renderInlineMarkdown(trimmed.slice(2))}</h1>`);
-      return;
-    }
-    if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-      if (listMode !== "ul") {
-        closeList();
-        html.push("<ul>");
-        listMode = "ul";
-      }
-      html.push(`<li>${renderInlineMarkdown(trimmed.slice(2))}</li>`);
-      return;
-    }
-    if (/^\d+\.\s+/.test(trimmed)) {
-      if (listMode !== "ol") {
-        closeList();
-        html.push("<ol>");
-        listMode = "ol";
-      }
-      const text = trimmed.replace(/^\d+\.\s+/, "");
-      html.push(`<li>${renderInlineMarkdown(text)}</li>`);
+      resetListPointers();
+      const el = document.createElement("h1");
+      el.innerHTML = renderInlineMarkdown(trimmed.slice(2));
+      container.append(el);
       return;
     }
 
-    closeList();
-    html.push(`<p>${renderInlineMarkdown(trimmed)}</p>`);
+    if (/^\d+\.\s+/.test(trimmed)) {
+      if (!orderedList) {
+        orderedList = document.createElement("ol");
+        container.append(orderedList);
+      }
+      unorderedList = null;
+      nestedUnorderedList = null;
+
+      const li = document.createElement("li");
+      li.innerHTML = renderInlineMarkdown(trimmed.replace(/^\d+\.\s+/, ""));
+      orderedList.append(li);
+      lastOrderedItem = li;
+      return;
+    }
+
+    if (/^[-*]\s+/.test(trimmed)) {
+      const text = trimmed.replace(/^[-*]\s+/, "");
+      const li = document.createElement("li");
+      li.innerHTML = renderInlineMarkdown(text);
+
+      if (orderedList && lastOrderedItem && indent >= 2) {
+        if (!nestedUnorderedList) {
+          nestedUnorderedList = document.createElement("ul");
+          lastOrderedItem.append(nestedUnorderedList);
+        }
+        nestedUnorderedList.append(li);
+        return;
+      }
+
+      if (!unorderedList) {
+        unorderedList = document.createElement("ul");
+        container.append(unorderedList);
+      }
+      orderedList = null;
+      nestedUnorderedList = null;
+      lastOrderedItem = null;
+      unorderedList.append(li);
+      return;
+    }
+
+    resetListPointers();
+    const paragraph = document.createElement("p");
+    paragraph.innerHTML = renderInlineMarkdown(trimmed);
+    container.append(paragraph);
   });
 
-  closeList();
-  return html.join("");
+  return container.innerHTML;
 }
 
 function render(project, build, selectedVersion, selectedOs) {
