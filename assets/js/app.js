@@ -110,57 +110,6 @@ function createGallery(images = []) {
   return wrapper;
 }
 
-function createReleases(releases = []) {
-  const wrapper = document.createDocumentFragment();
-
-  releases.forEach((release) => {
-    const releaseItem = document.createElement("section");
-    releaseItem.className = "release-item";
-
-    const releaseHead = document.createElement("div");
-    releaseHead.className = "release-head";
-
-    const version = document.createElement("p");
-    version.className = "release-version";
-    version.textContent = release.version ? `Version ${release.version}` : "Version";
-
-    const date = document.createElement("span");
-    date.className = "release-date";
-    date.textContent = release.date || "";
-
-    releaseHead.append(version, date);
-    releaseItem.append(releaseHead);
-
-    const buildList = document.createElement("ul");
-    buildList.className = "build-list";
-
-    (release.builds || []).forEach((build) => {
-      const buildItem = document.createElement("li");
-      buildItem.className = "build-item";
-
-      const osChip = document.createElement("span");
-      osChip.className = "os-chip";
-      osChip.textContent = build.os || "OS";
-
-      const link = document.createElement("a");
-      link.className = "download-link";
-      link.href = build.file;
-      link.textContent = build.label
-        ? `${build.label} (${build.type})`
-        : `${build.os} download (${build.type})`;
-      link.setAttribute("download", "");
-
-      buildItem.append(osChip, link);
-      buildList.append(buildItem);
-    });
-
-    releaseItem.append(buildList);
-    wrapper.append(releaseItem);
-  });
-
-  return wrapper;
-}
-
 function renderProject(project) {
   const clone = projectTemplate.content.cloneNode(true);
 
@@ -176,7 +125,9 @@ function renderProject(project) {
   });
 
   clone.querySelector(".project-gallery").append(createGallery(project.images));
-  clone.querySelector(".release-list").append(createReleases(projectReleases(project)));
+
+  const detailsLink = clone.querySelector(".details-link");
+  detailsLink.href = `project.html?id=${encodeURIComponent(project.id)}`;
 
   return clone;
 }

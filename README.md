@@ -2,14 +2,17 @@
 
 Static personal website with:
 - Top dropdown nav + search
-- Development project sections (text + images + versioned releases)
+- Development project list page (text + images, no direct download links)
+- Project details page with version + OS dropdown download
 - Data-driven rendering from `assets/data/projects.json`
 
 ## Project Structure
 
 - `index.html`
+- `project.html` (project details, loaded with `?id=<project-id>`)
 - `assets/css/styles.css`
 - `assets/js/app.js`
+- `assets/js/project.js`
 - `assets/data/projects.json`
 - `assets/images/`
 - `assets/downloads/`

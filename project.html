@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Details | Nir Portfolio</title>
+    <meta name="description" content="Project details with version and OS download selection." />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html">Nir Portfolio</a>
+      </div>
+    </header>
+
+    <main class="content">
+      <section id="project-root" aria-live="polite" aria-atomic="true"></section>
+    </main>
+
+    <template id="project-detail-template">
+      <article class="project-detail">
+        <div class="detail-top">
+          <a class="back-link" href="index.html">&larr; Back to Projects</a>
+        </div>
+        <h1 class="project-title"></h1>
+        <p class="project-summary"></p>
+        <p class="project-meta"></p>
+        <ul class="project-tags"></ul>
+        <p class="project-description"></p>
+        <div class="project-gallery"></div>
+
+        <section class="download-panel">
+          <h2>Download Release</h2>
+          <div class="download-controls">
+            <div class="field-group">
+              <label for="version-select">Version</label>
+              <select id="version-select" name="version"></select>
+            </div>
+            <div class="field-group">
+              <label for="os-select">Operating System</label>
+              <select id="os-select" name="os"></select>
+            </div>
+          </div>
+          <div class="download-actions">
+            <a id="download-button" class="download-btn" href="#" download>Download</a>
+            <span id="download-meta" class="download-meta"></span>
+          </div>
+        </section>
+      </article>
+    </template>
+
+    <script src="assets/js/project.js" defer></script>
+  </body>
+</html>
