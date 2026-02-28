@@ -1,5 +1,3 @@
-const DATA_PATH = "assets/data/projects.json";
-
 const projectRoot = document.getElementById("project-root");
 const template = document.getElementById("project-detail-template");
 
@@ -56,7 +54,15 @@ function createGallery(images = []) {
 
 function getProjectId() {
   const params = new URLSearchParams(window.location.search);
-  return params.get("id");
+  const fromQuery = params.get("id");
+  if (fromQuery) {
+    return fromQuery;
+  }
+  const hash = window.location.hash.replace(/^#/, "").trim();
+  if (hash.startsWith("id=")) {
+    return hash.slice(3);
+  }
+  return hash || null;
 }
 
 function showError(message) {
@@ -65,6 +71,42 @@ function showError(message) {
   error.className = "empty-state";
   error.textContent = message;
   projectRoot.append(error);
+}
+
+function candidateDataPaths() {
+  const candidates = new Set(["assets/data/projects.json", "./assets/data/projects.json"]);
+  const pathParts = window.location.pathname.split("/").filter(Boolean);
+  const firstPart = pathParts[0] || "";
+  const isLikelyProjectSite =
+    window.location.hostname.endsWith(".github.io") &&
+    firstPart &&
+    !firstPart.includes(".") &&
+    firstPart !== "index.html" &&
+    firstPart !== "project.html";
+
+  if (isLikelyProjectSite) {
+    candidates.add(`/${firstPart}/assets/data/projects.json`);
+  } else {
+    candidates.add("/assets/data/projects.json");
+  }
+
+  return [...candidates];
+}
+
+async function loadProjectsData() {
+  const attempts = [];
+  for (const path of candidateDataPaths()) {
+    try {
+      const response = await fetch(path);
+      if (response.ok) {
+        return await response.json();
+      }
+      attempts.push(`${path} (${response.status})`);
+    } catch (_error) {
+      attempts.push(`${path} (network error)`);
+    }
+  }
+  throw new Error(`Failed to load project data. Attempts: ${attempts.join(", ")}`);
 }
 
 function optionLabel(release, isLatest) {
@@ -153,23 +195,21 @@ function renderProject(project) {
 }
 
 async function init() {
-  const id = getProjectId();
-  if (!id) {
-    showError("Missing project id. Open a project from the main list page.");
-    return;
-  }
-
   try {
-    const response = await fetch(DATA_PATH);
-    if (!response.ok) {
-      throw new Error(`Failed to load projects: ${response.status}`);
+    const projects = await loadProjectsData();
+    const id = getProjectId();
+    let project = null;
+
+    if (id) {
+      project = projects.find((item) => item.id === id);
     }
 
-    const projects = await response.json();
-    const project = projects.find((item) => item.id === id);
+    if (!project) {
+      project = projects[0] || null;
+    }
 
     if (!project) {
-      showError("Project not found. Return to the project list and try again.");
+      showError("No projects were found in project data.");
       return;
     }
 
