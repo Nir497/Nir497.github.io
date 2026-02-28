@@ -167,7 +167,7 @@
     "tags": ["Development", "Search", "Pending Details"],
     "year": 2026,
     "featured": true,
-    "nextStepsMarkdown": "### Setup\\n- Unzip the Smart Search+ package.\\n- Open a terminal in the project directory.\\n- Configure required environment variables and API keys.\\n\\n### Run\\n- Start the app using your documented command (for example `npm start`).\\n- Validate search behavior using sample queries.\\n\\n### Verify\\n- Confirm the expected results are returned.\\n- Save your config for future runs.",
+    "nextStepsMarkdown": "### Setup\\n- Unzip the Smart Search+ package.\\n- Open a terminal in the project directory.\\n- Configure required environment variables and API keys.\\n-- Optional APIs\\n--- GEMINI_API_KEY (used for ai summary, gemini 2.5 Flah) \\n---WEATHERAPI_KEY (Used for weather in search, weatherapi.com) \\n--- ABSTRACT_API_KEY (Used for world clock, abstractapi.com) \\n---FINNHUB_API_KEY (Used for stocks, finnhub.com) \\n--- GEMINI_CHAT_API_KEY (Used for smart search ai, gemini 2.5 flash)### \\- After Entering APIs, run using ''npm start''.\\n- In Your Browser, Go to: http://localhost:4000.",
     "images": [
       {
         "src": "assets/images/design-1.svg",
