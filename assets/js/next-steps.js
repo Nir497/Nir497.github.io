@@ -85,12 +85,16 @@ function renderInlineMarkdown(text) {
 function renderMarkdown(markdown) {
   const lines = String(markdown).split("\n");
   const html = [];
-  let inList = false;
+  let listMode = null;
 
   function closeList() {
-    if (inList) {
+    if (listMode === "ul") {
       html.push("</ul>");
-      inList = false;
+      listMode = null;
+    }
+    if (listMode === "ol") {
+      html.push("</ol>");
+      listMode = null;
     }
   }
 
@@ -117,11 +121,22 @@ function renderMarkdown(markdown) {
       return;
     }
     if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
-      if (!inList) {
+      if (listMode !== "ul") {
+        closeList();
         html.push("<ul>");
-        inList = true;
+        listMode = "ul";
       }
       html.push(`<li>${renderInlineMarkdown(trimmed.slice(2))}</li>`);
+      return;
+    }
+    if (/^\d+\.\s+/.test(trimmed)) {
+      if (listMode !== "ol") {
+        closeList();
+        html.push("<ol>");
+        listMode = "ol";
+      }
+      const text = trimmed.replace(/^\d+\.\s+/, "");
+      html.push(`<li>${renderInlineMarkdown(text)}</li>`);
       return;
     }
 

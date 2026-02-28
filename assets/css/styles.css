@@ -346,6 +346,11 @@ body {
   padding-left: 1.2rem;
 }
 
+.markdown-content ol {
+  margin: 0.4rem 0;
+  padding-left: 1.3rem;
+}
+
 .markdown-content li {
   margin: 0.25rem 0;
 }
